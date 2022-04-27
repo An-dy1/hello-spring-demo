@@ -30,6 +30,8 @@ public class HelloController {
         return "Hello, " + name + "!";
     }
 
+
+
     // Handles requests of the form /hello/LaunchCode
     @GetMapping("{name}")
     public String helloWithPathParam(@PathVariable String name) {
@@ -37,7 +39,7 @@ public class HelloController {
     }
 
     // /hello/form
-    @GetMapping("form")
+    @RequestMapping(value="form", method = RequestMethod.GET)
     public String helloForm() {
         return "<html>" +
                     "<body>" +
@@ -47,6 +49,40 @@ public class HelloController {
                         "</form>" +
                     "</body>" +
                 "</html>";
+    }
+
+
+    @RequestMapping(value = "/form/language", method = {RequestMethod.POST})
+    public static String helloWithQueryParamLanguageName(@RequestParam String name, @RequestParam String language) {
+
+        if(name == "") {
+            return "Hello, world";
+        }
+
+        if(language.equals("French") ) {
+            return "Bonjour, " + name;
+        } else if(language.equals("Creole")) {
+            return "Bonjou, " + name;
+        } else {
+            return "Bon matin " + name;
+        }
+    }
+
+    @RequestMapping(value="/form/language", method= RequestMethod.GET)
+    public String helloFormLanguage() {
+        return "<html>" +
+                    "<body>" +
+                        "<form action = '/hello/form/language' method = 'post'>" + // submit a request to /hello/form/languagee
+                            "<input type = 'text' name='name' >" +
+                            "<select name='language'>" +
+                                "<option value='French'>French</option>" +
+                                "<option value='Creole'>Creole</option>" +
+                                "<option value='Québecois'>Québecois</option>" +
+                            "</select>" +
+                            "<input type='submit' value='Speak French' >" +
+                        "</form>" +
+                    "</body>" +
+            "</html>";
     }
 
 }
