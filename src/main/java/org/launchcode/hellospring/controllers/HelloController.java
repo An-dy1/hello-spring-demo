@@ -40,12 +40,12 @@ public class HelloController {
     @GetMapping("form")
     public String helloForm() {
         return "<html>" +
-                "<body>" +
-                "<form action = '/hello' method = 'post'>" + // submit a request to /hello
-                "<input type = 'text' name = 'name' >" +
-                "<input type = 'submit' value = 'Greet Me!' >" +
-                "</form>" +
-                "</body>" +
+                    "<body>" +
+                        "<form action = '/hello' method = 'post'>" + // submit a request to /hello
+                            "<input type = 'text' name = 'name' >" +
+                            "<input type = 'submit' value = 'Greet Me!' >" +
+                        "</form>" +
+                    "</body>" +
                 "</html>";
     }
 
